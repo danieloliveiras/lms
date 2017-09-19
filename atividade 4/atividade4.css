@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#head{
+}
+
+#img{
+    float: right;
+}
+
+#text{
+    text-align: right;
+    float: right;
+    margin-top: 10px;
+}
+
+.menu1{
+    background-color: #5CB85C;
+    overflow: auto;
+}
+
+#aaaa{
+    background-color: #5CB85C;
+}
+
+.menu1 ul{
+    list-style: none;
+}
+
+.menu1 ul li a{
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    float: left;
+    font-family: "Ariel", sans-serif;
+    color: white;
+}
+
+.menu1 ul li a:hover{
+    background-color: #FFFFFF;
+}
+
+.menu2{
+    background-color: #FFFFFF;
+    width: 15%;
+    height: 1000px;
+    float: left;
+}
+
+.menu2 ul{
+    list-style: none;
+}
+
+.menu2 p{
+    font-family: "Ariel", sans-serif;
+    color: black;
+    font-size: 20px;
+}
+.menu2 ul li a{
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    font-family: "Ariel", sans-serif;
+    color: black;
+    font-size: 17px;
+}
+
+.menu2 ul li a:hover{
+    background-color: #9A9A9A;
+}
+
+.menu1 > ul > li > a, .dropdown .dropdown-button{
+    display: block;
+    text-decoration: none;
+    font-family: "Ariel", sans-serif;
+    color: #FFFFFF;
+    float:left;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.dropdown{
+    float: left;
+}
+
+.dropdown-content{
+    position: absolute;
+    background-color: #EEEEEE;
+    width: 150px;
+    display: none;
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+.dropdown .dropdown-button{
+    float:none;
+}
+
+.menu1 > ul > li > a:hover, .dropdown .dropdown-button:hover{
+    background-color: #ccc;
+}
+
+.dropdown-content > ul{
+    list-style: none;
+}
+
+.dropdown-content > ul > li > a{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-content p{
+    font-family: "Ariel", sans-serif;
+    color: black;
+    font-size: 20px;
+}
+
+.dropdown-content > ul > li > a:hover{
+    background-color: #ccc;
+}

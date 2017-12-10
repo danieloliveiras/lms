@@ -1,0 +1,114 @@
+*{
+    padding: 0;
+    margin: 0;
+  }
+  
+.superior ul li a{
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  padding: 14px 18px;
+}
+  
+.superior ul{
+  list-style-type: none;
+  background-color: #222;
+  display: block;
+}
+  
+.superior ul li{
+  display: inline-block;
+}
+  
+.superior ul a:hover{
+  background-color: #888;
+}
+
+.button{
+  position: relative;
+}
+
+.dropdown{
+  display: none;
+  position: absolute;
+}
+
+.dropdown ul{
+  min-width: 100px;
+  background-color: #888;
+}
+
+.dropdown ul li a{
+  color: white;
+  text-decoration: none;
+  width: 100px;
+}
+
+.dropdown ul li a:hover{
+  background-color: #555;
+}
+
+.button:hover .dropdown{
+  display: block;
+}
+
+.esquerda{
+  list-style-type: none;
+  background-color: #444;
+  width: 15%;
+  height: 100vh;
+  float: left;
+  box-shadow: 1px 1px 4px black;
+}
+
+.esquerda a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 14px 18px;
+}
+
+.esquerda a:hover{
+  background: #555;
+  width: 80%;
+}
+
+.direita{
+  float: right;
+  width: 15%;
+  heigth: 100%;
+  background: linear-gradient(to top, #999, #222);
+  height: 100vh;
+  color: white;
+  box-shadow: 1px 1px 4px black;
+}
+
+.direita h4{
+  text-align: center;
+}
+
+.direita p{
+  padding: 8px;
+  text-align: center;
+}
+
+.content{
+  background-color: #999;
+  height: 100vh;
+}
+
+.animacao{
+  animation-name: rodar;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rodar{
+  from{
+     transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="trabalho2.css">
+    <title>ChatWeb</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="pag">
+        <div class="modalback">
+            <form class="modal">
+                User: <input type="text" name="user" id="user"> <br>
+                <input type="submit" value="Entrar" id="entrar">
+                <button id="fechar">x</button>
+            </form>
+        </div>
+        <header class="cab">
+            <h1>ChatWeb</h1>
+            <!-- <img src="login.png" style="width:40px; height:40px;"> -->
+            <button id="login">Login</button>
+            <button id="logout">Logout</button>
+            <h2 id="cabName"></h2>
+        </header>
+        <div class="corpo">
+            <div class="grupos">
+                <div class="barraLateral">
+                    <div class="listGrupos">
+                        <!-- <div id="grupo">
+                            <img src="icone.png" width="25" height="25">
+                            <p>Ciclano</p>
+                        </div> <br>
+                        <div id="grupo">
+                            <img src="icone.png" width="25" height="25">
+                            <p>Fulano</p>
+                        </div> <br>
+                        <div id="grupo">
+                            <img src="icone.png" width="25" height="25">
+                            <p>Beltrano</p>
+                        </div> <br> -->
+                    </div>
+                    <div class="novosGrupos">
+                        Novo Grupo <br>
+                        Nome: <input type="text" name="nome" id="nome" placeholder="Nome Do Grupo"> <br>
+                        Id: <input type="text" name="id" id="id" placeholder="Id Do Nome"> <br>
+                        <input type="submit" value="Cadastrar" id="cadastrar">
+                    </div>
+                </div>
+            </div>
+            <div class="mensagens">
+                <div class="msgs">
+                    <div class="selecionado">
+                        <!-- <div class="panel">
+                            <div class="panel-heading">
+                                <h3>fulano</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p>texto texto texto</p>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="novas-mensagens">
+                    <input type="text" id="newmsg" name="newmsg" placeholder="digite mensagem..." size="75%">
+                    <input type="submit" name="enviar" id="enviar">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        let $modalback = $('.modalback');
+        let $user = $('#user');
+        let $entrar = $('#entrar');
+        let $fechar = $('#fechar');
+        let $login = $('#login');
+        let $logout = $('#logout');
+        let useratv = localStorage.getItem('text');
+
+        $login.on('click', function(){
+            event.preventDefault();
+            $modalback.show();
+        })
+
+        $fechar.on('click', function(){
+            $modalback.hide();
+        })
+
+        $entrar.on('click', function(){
+            localStorage.setItem('text', $user.val());
+            useratv = localStorage.getItem('text');
+            $login.hide();
+            log();
+        })
+
+        $logout.on('click', function(){
+            localStorage.removeItem('text');
+            useratv = false;
+            $logout.hide();
+            log();
+        })
+
+        function log(){
+            if (useratv){
+                $logout.show();
+            } 
+            else{
+                $login.show();
+            }
+        }
+
+        log();
+
+        let $listGrupos = $('.listGrupos');
+        let listID = [];
+
+        function addGrupo(group){
+            $listGrupos.append('<div id="grupo"><img src="icone.png" width="25" height="25"><p>' + group.groupName + '</p></div><br>');
+            listID.push(group.groupID);
+        }
+
+        let $panel = $('.panel');
+        let $panelhead = $('.panel-heading');
+        let $panelbody = $('.panel-body');
+        let $selecionado = $('.selecionado');
+        let $mensagens = $('.mensagens');
+        let $msgs = $('.msgs');
+
+        function addMensagem(id){
+            $selecionado.append('<div class="panel"><div class="panel-heading"><h3>' + id.userName + '</h3></div><div class="panel-body"><p>' + id.message + '</p></div></div>');
+            // $msgs.text(selec);
+        }
+        
+        let $grupo = $('#grupo');
+        let $cab = $('.cab');
+        let $cabName = $('#cabName');
+
+        function getGrupos(){
+            $.ajax({
+                type: 'GET',
+                url: 'http://rest.learncode.academy/api/daniel/groups5',
+                success: function(data){
+                    $listGrupos.empty();
+                    listID = [];
+                    $.each(data, function(i, group){
+                        addGrupo(group);
+                    })
+                    addClick();
+                    console.log(listID);
+                }
+            })
+        }
+        
+        getGrupos();
+
+        let grupoatv = false;
+
+        function addClick(){
+            $grupo = $("[id=grupo]");
+            $grupo.each(function(i, element){
+                $(element).on('click', function(){
+                    grupoatv = listID[i];
+                    getMensagens();
+                    $cabName.text($(this).children("p").text());
+                });
+            });
+        }
+       
+        let $nome = $('#nome');
+        let $id = $('#id');
+        let $cadastrar = $('#cadastrar');
+
+        $cadastrar.on('click', function(){
+            event.preventDefault();
+            
+            $.ajax({
+                type: "POST",
+                url: "http://rest.learncode.academy/api/daniel/groups5",
+                data: {groupName: $nome.val(), groupID: $id.val()},
+                success: function(data){
+                    // $listGrupos.empty;
+                    getGrupos();
+                },
+            })
+        })
+
+        let $newmsg = $('#newmsg');
+        let $enviar = $('#enviar');
+        
+        $enviar.on('click', function(){
+            event.preventDefault();
+            
+            if (useratv && grupoatv){
+                $.ajax({
+                type: 'POST',
+                url: 'http://rest.learncode.academy/api/daniel/' + grupoatv,
+                data: {userName: useratv, message: $newmsg.val()},
+                success: function(data){
+                    // getGrupos();
+                    getMensagens();
+                    // console.log($newmsg.val());
+                    // console.log(listID);
+                },
+            })
+            } else{
+                alert("Erro: nenhum grupo selecionado ou usuário deslogado.");
+            }
+            
+        })
+
+        function getMensagens(){
+            $.ajax({
+                type: 'GET',
+                url: 'http://rest.learncode.academy/api/daniel/' + grupoatv,
+                success: function(data){
+                    $selecionado.empty();
+                    $.each(data, function(i, group){
+                        addMensagem(group);
+                    
+                        
+                    })
+                }
+            })
+        }
+
+        // getMensagens();
+
+    </script>
+</body>
+</html>

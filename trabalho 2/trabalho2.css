@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+    .pag{
+        width: 900px;
+        margin: auto;
+        height: 90vh;
+    }
+
+    .cab{
+        width: 100%;
+        background-color: rgb(0, 170, 113);
+        height: 50px;
+    }
+
+    .cab h1{
+        float: left;
+        padding: 5px;
+    }
+
+    .cab h2{
+        padding: 5px;
+        margin-left: 300px;
+        padding-top: 15px;
+    }
+
+    .cab button{
+        float: right;
+        padding: 5px;
+        margin: 10px;
+    }
+
+    .cab #logout{
+        display: none;
+    }
+
+    .cab #login{
+        display: none;
+    }
+    
+    .corpo{
+        height: 100%;
+
+    }
+    .corpo .grupos, .corpo .mensagens{
+        float: left;
+    }
+
+    .grupos{
+        width: 30%;
+        background-color: rgb(113, 255, 201);
+        height: 100%;
+    }
+
+    .mensagens{
+        width: 70%;
+        background-color: rgb(168, 255, 223);
+        height: 100%;
+    }
+
+    .selecionado{
+        overflow: auto;
+        max-height: 680px;
+    }
+
+    .novosGrupos{
+        bottom: 4%;
+        position: absolute;
+        padding: 10px;
+    }
+
+    .barraLateral{
+        display: block;
+    }
+
+    .listGrupos{
+        overflow: auto;
+        max-height: 600px;
+    }
+
+    .barraLateral #grupo{
+        display: inline-block;
+        cursor: pointer;
+        margin: 15px;
+    }
+
+    .barraLateral #grupo p{
+        float: right;
+        font-size: 20px;
+        padding: 8px;
+        user-select: none;
+    }
+
+    .panel{
+        padding: 15px;
+    }
+
+    .novas-mensagens{
+        display: inline-block;
+        bottom: 4%;
+        position: absolute;
+    }
+
+    .modalback{
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 900px;
+        height: 97vh;
+        position: fixed;
+        display: none;
+    }
+
+    .modal{
+        background-color: rgb(113, 255, 201);
+        width: 250px;
+        padding: 20px;
+        margin: auto;
+    }
+
+    .fechar{
+        position: absolute;
+        top: 0;
+        right: 4%;
+    }
+
+
+    /*#listAmigos li{
+        list-style: none;
+        padding: 15px;
+        font-size: 15px;
+        margin-top: 15px;
+        cursor: pointer;
+        width: 40px
+    }*/
